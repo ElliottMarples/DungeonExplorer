@@ -5,13 +5,12 @@ namespace DungeonExplorer
     public class Room
     {
         private string _description;
-        private string[] _directions;
+        private List<string> _directions;
         private string _origin_direction;
 
-        public Room(string description, string[] directions)
+        public Room(string description)
         {
             this.Description = description;
-            this.Directions = directions;
         }
 
         public string Description
@@ -20,7 +19,7 @@ namespace DungeonExplorer
             set { _description = value; }
         }
 
-        public string[] Directions
+        public List<string> Directions
         {
             get { return _directions; }
             set { _directions = value; }

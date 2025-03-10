@@ -19,6 +19,7 @@ namespace DungeonExplorer
                 else { _name = value; }
             }
         }
+
         public int Health {
             get { return _health; }
             set
@@ -37,13 +38,20 @@ namespace DungeonExplorer
             this.Name = name;
             this.Health = health;
         }
+
         public void PickUpItem(string item)
         {
 
         }
+
         public string InventoryContents()
         {
             return string.Join(", ", inventory);
+        }
+
+        public string GetStats()
+        {
+            return $"{Name}'s Stats:\nHealth = {Health}";
         }
     }
 }
