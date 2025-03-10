@@ -14,6 +14,7 @@ namespace DungeonExplorer
 
         public Game()
         {
+            // Loops until the player has a name
             while (player == null || player.Name == null)
             {
                 // Asks user for their name and sets player's health
@@ -21,10 +22,11 @@ namespace DungeonExplorer
                 string playerName = Console.ReadLine();
                 int playerHealth = 100;
 
+                // Creates a new player with the name and health
                 player = new Player(playerName, playerHealth);
             }
 
-            // Creates all the rooms in the dungeon
+            // Creates all the rooms in the dungeon with an appropriate description
             Room entrance = new Room("a stone arch surrounding an entrance into the dungeon facing south.");
             Room room1 = new Room("an empty room with passages to the east and west.");
             Room room2left = new Room("a room containing a treasure chest and a passage to the south.");
@@ -37,6 +39,7 @@ namespace DungeonExplorer
             Room finalRoom = new Room("a vast underground arena with a massive slime creature in the centre.");
             Room exit = new Room("Exit.");
 
+            // Organises the rooms into a 2D array
             roomMatrix = new Room[6, 3]
             {
                 { null,         entrance,   null        },
@@ -47,9 +50,9 @@ namespace DungeonExplorer
                 { null,         exit,       null        }
             };
 
+            // Sets the current room to the entrance
             currentRoom = entrance;
             currentIndex = new int[] {0, 1};
-
 
             // Welcomes the player
             Console.WriteLine($"\nWelcome to the Dungeon, {player.Name}.\n");
@@ -126,34 +129,49 @@ namespace DungeonExplorer
 
         public void Start()
         {
-            // Change the playing logic into true and populate the while loop
+            // Starts the main game loop
             bool playing = true;
             while (playing)
             {
                 string action;
                 char chosen_direction;
                 bool notMoved = true;
+
+                // Loops while the player has not moved between rooms
                 while (notMoved)
                 {
+                    // Asks the player what they would like to do
                     Console.Write("Enter [I] to inspect the room, [S] to view your stats, [P] to pick up any items or [M] to move to another room.\n> ");
                     action = Console.ReadLine().ToLower();
+
+                    // Checks the player's input and performs the appropriate action
                     if (action == "i") { Console.WriteLine($"You see {currentRoom.GetDescription()}"); }
                     else if (action == "s") { Console.WriteLine(player.GetStats()); }
                     else if (action == "m")
                     {
+                        // Gets the possible directions the player can move
                         List<string> possible_directions = CheckDirections();
                         List<char> possible_directions_letter = new List<char>();
+
                         bool directionChosen = false;
+
+                        // Loops while the player has not chosen a direction to move
                         while (directionChosen == false)
                         {
+
+                            // Displays the possible directions the player can move denoting the first letter of the direction
                             Console.WriteLine($"\nYou can move:\n");
                             foreach (string direction in possible_directions)
                             {
                                 Console.WriteLine($"[{direction[0]}]{direction.Substring(1)}");
                                 possible_directions_letter.Add(direction.ToLower()[0]);
                             }
+
+                            // Asks the player which direction they would like to move
                             Console.Write("Enter the first letter of the direction you would like to move.\n> ");
                             chosen_direction = Console.ReadLine().ToLower()[0];
+
+                            // Checks if the player has chosen a valid direction to move
                             if (possible_directions_letter.Contains(chosen_direction))
                             {
                                 Move(chosen_direction);
