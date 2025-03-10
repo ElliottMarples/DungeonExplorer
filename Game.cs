@@ -25,27 +25,29 @@ namespace DungeonExplorer
             }
 
             // Creates all the rooms in the dungeon
-            Room startRoom = new Room("a stone arch surrounding an entrance into the dungeon.");
-            Room room1 = new Room("room1");
-            Room room2left = new Room("room2left");
-            Room room2right = new Room("room2right");
-            Room room3left = new Room("room3left");
-            Room room3right = new Room("room3right");
-            Room room4left = new Room("room4left");
-            Room room4right = new Room("room4right");
-            Room room5 = new Room("room5");
-            Room finalRoom = new Room("finalroom");
+            Room entrance = new Room("a stone arch surrounding an entrance into the dungeon facing south.");
+            Room room1 = new Room("an empty room with passages to the east and west.");
+            Room room2left = new Room("a room containing a treasure chest and a passage to the south.");
+            Room room2right = new Room("a room containing a shadowed figure and a passage to the south.");
+            Room room3left = new Room("a long passage heading south with unusual symbols carved into the walls.");
+            Room room3right = new Room("a bridge heading south over an underground ravine.");
+            Room room4left = new Room("a cave containing bats that won't let you past and a door to the east.");
+            Room room4right = new Room("a cave with a table of glass bottles filled with a mysterious liquid.");
+            Room room5 = new Room("a chamber with doors to the east and west.\n\nThere's a closed metal gate to the south\nIn front of the gate is a stone on a pedestal.");
+            Room finalRoom = new Room("a vast underground arena with a massive slime creature in the centre.");
+            Room exit = new Room("Exit.");
 
-            roomMatrix = new Room[5, 3]
+            roomMatrix = new Room[6, 3]
             {
-                { null,         startRoom,  null        },
+                { null,         entrance,   null        },
                 { room2left,    room1,      room2right  },
                 { room3left,    null,       room3right  },
                 { room4left,    room5,      room4right  },
-                { null,         finalRoom,  null        }
+                { null,         finalRoom,  null        },
+                { null,         exit,       null        }
             };
 
-            currentRoom = startRoom;
+            currentRoom = entrance;
             currentIndex = new int[] {0, 1};
 
 
@@ -63,12 +65,6 @@ namespace DungeonExplorer
             int south_index = currentIndex[0] + 1;
             int west_index = currentIndex[1] - 1;
             int east_index = currentIndex[1] + 1;
-
-            Console.WriteLine($"{roomMatrix.GetLength(0)}, {roomMatrix.GetLength(1)}");
-            Console.WriteLine($"{north_index}, {currentIndex[1]}");
-            Console.WriteLine($"{south_index}, {currentIndex[1]}");
-            Console.WriteLine($"{currentIndex[0]}, {west_index}");
-            Console.WriteLine($"{currentIndex[0]}, {east_index}");
 
             // Checks if the room to the north, south, west and east of the current room exists and adds the direction to the list if it does
             if (north_index >= 0)
