@@ -145,7 +145,7 @@ namespace DungeonExplorer
                     action = Console.ReadLine().ToLower();
 
                     // Checks the player's input and performs the appropriate action
-                    if (action == "i") { Console.WriteLine($"You see {currentRoom.GetDescription()}"); }
+                    if (action == "i") { Console.WriteLine($"\nYou see {currentRoom.GetDescription()}"); }
                     else if (action == "s") { Console.WriteLine(player.GetStats()); }
                     else if (action == "m")
                     {
