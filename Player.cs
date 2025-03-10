@@ -14,7 +14,7 @@ namespace DungeonExplorer
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    Console.WriteLine("Name cannot be empty.");
+                    Console.WriteLine("\nName cannot be empty.");
                 }
                 else { _name = value; }
             }
@@ -23,16 +23,19 @@ namespace DungeonExplorer
             get { return _health; }
             set
             {
-                if (int.)
-                _health = value;
+                if (value < 1)
+                {
+                    Console.WriteLine("\nHealth cannot be zero or negative.");
+                }
+                else { _health = value; }
             }
         }
         private List<string> inventory = new List<string>();
 
         public Player(string name, int health) 
         {
-            Name = name;
-            Health = health;
+            this.Name = name;
+            this.Health = health;
         }
         public void PickUpItem(string item)
         {
