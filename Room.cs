@@ -1,43 +1,17 @@
-﻿using System.Collections.Generic;
-
-namespace DungeonExplorer
+﻿namespace DungeonExplorer
 {
     public class Room
     {
-        // Private properties
-        private string _description;
-        private string _item;
-        private bool _isAccessible;
+        private string description;
 
-        // Public properties with getters and setters
-        public string Description
+        public Room(string description)
         {
-            get { return _description; }
-            set { _description = value; }
-        }
-        public string Item
-        {
-            get { return _item; }
-            set { _item = value; }
-        }
-        public bool IsAccessible
-        {
-            get { return _isAccessible; }
-            set { _isAccessible = value; }
+            this.description = description;
         }
 
-        // Constructor
-        public Room(string description, string item = null, bool isAccessible = true)
-        {
-            this.Description = description;
-            this.Item = item;
-            this.IsAccessible = isAccessible;
-        }
-
-        // Returns the room's description
         public string GetDescription()
         {
-            return Description;
+            return description;
         }
     }
 }
