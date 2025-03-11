@@ -353,7 +353,7 @@ namespace DungeonExplorer
 
                     if (currentRoom == roomMatrix[5, 1])
                     {
-                        Console.WriteLine("\nCongratulations!\nYou made it to the exit of the dungeon.\nThanks for playing.");
+                        Console.WriteLine("\nCongratulations!\nYou made it to the exit of the dungeon.");
                         playing = false;
                     }
 
@@ -364,6 +364,7 @@ namespace DungeonExplorer
                     }
                 }
             }
+            Console.WriteLine("Thanks for playing!");
         }
     }
 }
